@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DCSAModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DCSA.dbo.result' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="result">
+          <Key>
+            <PropertyRef Name="rid" />
+          </Key>
+          <Property Name="rid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stu_id" Type="int" />
+          <Property Name="cid" Type="int" />
+          <Property Name="pmark1" Type="int" />
+          <Property Name="pmark2" Type="int" />
+          <Property Name="pmark3" Type="int" />
+          <Property Name="tmark1" Type="int" />
+          <Property Name="tmark2" Type="int" />
+          <Property Name="project_mark" Type="int" />
+          <Property Name="viva_mark" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DCSA.dbo.study_center' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="study_center">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sl_no" Type="int" />
+          <Property Name="study_center_name" Type="nvarchar" MaxLength="200" />
+          <Property Name="study_center_code" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DCSA.dbo.tblcourses' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tblcourses">
+          <Key>
+            <PropertyRef Name="cid" />
+          </Key>
+          <Property Name="cid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="course_code" Type="nchar" MaxLength="20" />
+          <Property Name="name_of_courses" Type="nchar" MaxLength="150" />
+          <Property Name="credits" Type="int" />
+          <Property Name="semester" Type="int" />
+        </EntityType>
+        <EntityType Name="tblstudent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="registation_id" Type="int" />
+          <Property Name="name" Type="nchar" MaxLength="150" />
+          <Property Name="semister" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DCSA.dbo.user' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="pass" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="pass" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="user_role" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="DCSAModel1StoreContainer">
+          <EntitySet Name="tblstudent" EntityType="Self.tblstudent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="result" EntityType="Self.result" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [result].[rid] AS [rid], 
+    [result].[stu_id] AS [stu_id], 
+    [result].[cid] AS [cid], 
+    [result].[pmark1] AS [pmark1], 
+    [result].[pmark2] AS [pmark2], 
+    [result].[pmark3] AS [pmark3], 
+    [result].[tmark1] AS [tmark1], 
+    [result].[tmark2] AS [tmark2], 
+    [result].[project_mark] AS [project_mark], 
+    [result].[viva_mark] AS [viva_mark]
+    FROM [dbo].[result] AS [result]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="study_center" EntityType="Self.study_center" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [study_center].[id] AS [id], 
+    [study_center].[sl_no] AS [sl_no], 
+    [study_center].[study_center_name] AS [study_center_name], 
+    [study_center].[study_center_code] AS [study_center_code]
+    FROM [dbo].[study_center] AS [study_center]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tblcourses" EntityType="Self.tblcourses" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tblcourses].[cid] AS [cid], 
+    [tblcourses].[course_code] AS [course_code], 
+    [tblcourses].[name_of_courses] AS [name_of_courses], 
+    [tblcourses].[credits] AS [credits], 
+    [tblcourses].[semester] AS [semester]
+    FROM [dbo].[tblcourses] AS [tblcourses]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="user" EntityType="Self.user" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [user].[id] AS [id], 
+    [user].[user_name] AS [user_name], 
+    [user].[pass] AS [pass], 
+    [user].[user_role] AS [user_role]
+    FROM [dbo].[user] AS [user]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DCSAModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblstudent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="registation_id" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
+          <Property Name="semister" Type="Int32" />
+        </EntityType>
+        <EntityType Name="result">
+          <Key>
+            <PropertyRef Name="rid" />
+          </Key>
+          <Property Name="rid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stu_id" Type="Int32" />
+          <Property Name="cid" Type="Int32" />
+          <Property Name="pmark1" Type="Int32" />
+          <Property Name="pmark2" Type="Int32" />
+          <Property Name="pmark3" Type="Int32" />
+          <Property Name="tmark1" Type="Int32" />
+          <Property Name="tmark2" Type="Int32" />
+          <Property Name="project_mark" Type="Int32" />
+          <Property Name="viva_mark" Type="Int32" />
+        </EntityType>
+        <EntityType Name="study_center">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sl_no" Type="Int32" />
+          <Property Name="study_center_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="study_center_code" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblcours">
+          <Key>
+            <PropertyRef Name="cid" />
+          </Key>
+          <Property Name="cid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="course_code" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="name_of_courses" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
+          <Property Name="credits" Type="Int32" />
+          <Property Name="semester" Type="Int32" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="pass" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="user_role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="DCSAEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblstudents" EntityType="Self.tblstudent" />
+          <EntitySet Name="results" EntityType="Self.result" />
+          <EntitySet Name="study_center" EntityType="Self.study_center" />
+          <EntitySet Name="tblcourses" EntityType="Self.tblcours" />
+          <EntitySet Name="users" EntityType="Self.user" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DCSAModel1StoreContainer" CdmEntityContainer="DCSAEntities1">
+          <EntitySetMapping Name="tblstudents">
+            <EntityTypeMapping TypeName="DCSAModel1.tblstudent">
+              <MappingFragment StoreEntitySet="tblstudent">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="registation_id" ColumnName="registation_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="semister" ColumnName="semister" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="results">
+            <EntityTypeMapping TypeName="DCSAModel1.result">
+              <MappingFragment StoreEntitySet="result">
+                <ScalarProperty Name="rid" ColumnName="rid" />
+                <ScalarProperty Name="stu_id" ColumnName="stu_id" />
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="pmark1" ColumnName="pmark1" />
+                <ScalarProperty Name="pmark2" ColumnName="pmark2" />
+                <ScalarProperty Name="pmark3" ColumnName="pmark3" />
+                <ScalarProperty Name="tmark1" ColumnName="tmark1" />
+                <ScalarProperty Name="tmark2" ColumnName="tmark2" />
+                <ScalarProperty Name="project_mark" ColumnName="project_mark" />
+                <ScalarProperty Name="viva_mark" ColumnName="viva_mark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="study_center">
+            <EntityTypeMapping TypeName="DCSAModel1.study_center">
+              <MappingFragment StoreEntitySet="study_center">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="sl_no" ColumnName="sl_no" />
+                <ScalarProperty Name="study_center_name" ColumnName="study_center_name" />
+                <ScalarProperty Name="study_center_code" ColumnName="study_center_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblcourses">
+            <EntityTypeMapping TypeName="DCSAModel1.tblcours">
+              <MappingFragment StoreEntitySet="tblcourses">
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="course_code" ColumnName="course_code" />
+                <ScalarProperty Name="name_of_courses" ColumnName="name_of_courses" />
+                <ScalarProperty Name="credits" ColumnName="credits" />
+                <ScalarProperty Name="semester" ColumnName="semester" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="DCSAModel1.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="user_role" ColumnName="user_role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
